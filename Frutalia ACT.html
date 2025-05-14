@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Frutalia - Jugos Naturales</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff0e6 url('img/fondo-frutas.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    .cenefa {
+      width: 100%;
+      background: #03a9f4;
+      overflow: hidden;
+      white-space: nowrap;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .cenefa-texto {
+      display: inline-block;
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+      animation: moverTexto 12s linear infinite, parpadeo 1s infinite alternate;
+      color: #fff8e1;
+    }
+
+    @keyframes moverTexto {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
+    }
+
+    @keyframes parpadeo {
+      from { opacity: 1; }
+      to { opacity: 0.5; }
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      border: 8px solid yellow;
+      position: relative;
+    }
+
+    .container::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: -8px;
+      right: -8px;
+      bottom: -8px;
+      background: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 0, 0.5),
+        rgba(255, 255, 0, 0.5) 10px,
+        transparent 10px,
+        transparent 20px
+      );
+      z-index: -1;
+      animation: lucesNavidad 1s infinite;
+      border-radius: 28px;
+    }
+
+    @keyframes lucesNavidad {
+      0% { opacity: 1; }
+      50% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+
+    .header {
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #ff3d00;
+      text-shadow: 1px 1px #ffe082;
+    }
+
+    .slogan {
+      font-style: italic;
+      color: #2e7d32;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    label {
+      font-weight: bold;
+      color: #4e342e;
+    }
+
+    input, select, textarea {
+      padding: 0.75rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 100%;
+    }
+
+    button {
+      padding: 1rem;
+      background: linear-gradient(to right, #ff7043, #ffca28);
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(to right, #f4511e, #fdd835);
+    }
+
+    .mensaje-exito {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #d0f8ce;
+      border-left: 5px solid #43a047;
+      border-radius: 10px;
+      color: #2e7d32;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .lista-pedidos {
+      margin-top: 2rem;
+    }
+
+    .pedido {
+      background: #fff3e0;
+      padding: 1rem;
+      border-left: 5px solid #fb8c00;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .footer-img {
+      width: 100%;
+      max-height: 120px;
+      object-fit: contain;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="cenefa">
+    <div class="cenefa-texto">🥤 ¡Bienvenido a Frutalia! Jugos naturales listos en 10 minutos 🍍🍓🍊</div>
+  </div>
+
+  <main class="container">
+    <header class="header">
+      <h1>Frutalia</h1>
+      <p class="slogan">¡Jugos naturales, listos en 10 minutos!</p>
+    </header>
+
+    <form id="pedidoForm">
+      <label>🍍 Nombre del cliente:
+        <input type="text" name="nombre" required />
+      </label>
+
+      <label>📱 Teléfono:
+        <input type="tel" name="telefono" required pattern="[0-9]{10}" />
+      </label>
+
+      <label>🥤 Sabor del jugo:
+        <select name="sabor" required>
+          <option value="">Selecciona</option>
+          <option value="naranja">Naranja</option>
+          <option value="mango">Mango</option>
+          <option value="fresa">Fresa</option>
+          <option value="piña">Piña</option>
+        </select>
+      </label>
+
+      <label>📏 Tamaño:
+        <select name="tamano" required>
+          <option value="">Selecciona</option>
+          <option value="chico">Chico</option>
+          <option value="mediano">Mediano</option>
+          <option value="grande">Grande</option>
+        </select>
+      </label>
+
+      <label>✏️ Comentarios adicionales:
+        <textarea name="comentarios"></textarea>
+      </label>
+
+      <button type="submit">🍹 Enviar Pedido</button>
+    </form>
+
+    <div id="mensajeExito" class="hidden mensaje-exito">
+      <p>✅ Tu pedido ha sido enviado con éxito.<br>Pasa a recogerlo en 10 minutos.<br>¡Frutalia agradece tu preferencia! 🍓</p>
+    </div>
+
+    <section class="lista-pedidos">
+      <h2>Pedidos Recientes</h2>
+      <div id="listaPedidos">Cargando pedidos...</div>
+    </section>
+
+    <footer>
+      <img src="img/frutas-footer.png" alt="Frutas decorativas" class="footer-img" />
+      <p>© 2025 Frutalia - Jugos Naturales</p>
+    </footer>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
